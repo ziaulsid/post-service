@@ -11,6 +11,12 @@
 - Execute `go build .` and `go run main.go` commands to build and run the application. 
 - Your server should be ready to serve the endpoints
 
+- Alternatively, if using Goland or any other IDE, follow this setup
+<img width="1066" alt="image" src="https://github.com/user-attachments/assets/9135577d-3b32-48ae-afd1-5cb1efa11a26">
+<img width="501" alt="image" src="https://github.com/user-attachments/assets/7ab98cf0-f975-49f7-a6ee-ee32db5540d8">
+
+
+
 ### API Endpoints
 1.  Create a post
 ```
