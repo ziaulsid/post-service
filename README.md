@@ -6,24 +6,9 @@
 - Allow user to view all the posts including recent 2 comments
 
 ### Setup of the Project
-- Run `docker-compose up --build` command to setup the database
-- docker-compose.yml file will read the values from .env file to connect to database
-- Execute `go build .` and `go run main.go` commands to build and run the application. 
-- Your server should be ready to serve the endpoints
-
-- Setup a .env file
-```
-DB_USER=root
-DB_PASSWORD=
-DB_NAME=post_db
-DB_HOST=localhost:3306
-DB_DRIVER=mysql
-
-```
-
-- Alternatively, if using Goland or any other IDE, follow this setup
-<img width="1066" alt="image" src="https://github.com/user-attachments/assets/9135577d-3b32-48ae-afd1-5cb1efa11a26">
-<img width="501" alt="image" src="https://github.com/user-attachments/assets/7ab98cf0-f975-49f7-a6ee-ee32db5540d8">
+- Requirements: `docker-compose`.
+- Run `docker-compose up --build` command to setup the database and run the app within the container itself
+  <img width="966" alt="image" src="https://github.com/user-attachments/assets/1eba5414-d388-4bc9-9817-e22daf55b5cf">
 
 
 
@@ -66,4 +51,4 @@ curl --location --request GET 'http://localhost:8080/users/1001/posts'
 - Image resizing (optimization) is performed asynchronously to avoid blocking the main request goroutines. This is managed by a WorkerPool with multiple workers. In a production environment, using message queues and a separate set of workers for this operation would be a more scalable approach.
 
 
-**Note:** The user story to delete comment from post is not implemented. Also test cases are not comprehensive due to work.
+**Note:** The user story to delete comment from post is not implemented. Also test cases are not comprehensive as i am travelling outside Singapore due to work.
