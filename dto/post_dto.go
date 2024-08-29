@@ -7,6 +7,12 @@ type CreatePostRequest struct {
 	UserID  uint64 `json:"user_id"`
 }
 
+type CreatePostResponse struct {
+	ID      uint64 `json:"id"`
+	Caption string `json:"caption"`
+	UserID  uint64 `json:"user_id"`
+}
+
 type PostResponse struct {
 	ID           uint64            `json:"id"`
 	Caption      *string           `json:"caption,omitempty"`

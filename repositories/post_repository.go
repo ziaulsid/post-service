@@ -9,7 +9,7 @@ import (
 )
 
 type PostRepository interface {
-	Create(post *models.Post) error
+	Create(post *models.Post) (uint64, error)
 	GetByID(postID uint64) (*models.Post, error)
 	GetPostsByUserID(userID uint64) ([]*models.Post, error)
 	Update(post *models.Post, updateFields map[string]interface{}) (*models.Post, error)
@@ -23,18 +23,22 @@ func NewPostRepository(db *sql.DB) PostRepository {
 	return &postRepositoryStruct{db: db}
 }
 
-func (r *postRepositoryStruct) Create(post *models.Post) error {
+func (r *postRepositoryStruct) Create(post *models.Post) (uint64, error) {
 	query := `
 		INSERT INTO posts (caption, created_by)
 		VALUES (?, ?)
 	`
 
-	_, err := r.db.Exec(query, post.Caption, post.CreatedBy)
+	result, err := r.db.Exec(query, post.Caption, post.CreatedBy)
 	if err != nil {
-		return fmt.Errorf("failed to create post: %v", err)
+		return 0, fmt.Errorf("failed to create post: %v", err)
 	}
 
-	return nil
+	id, err := result.LastInsertId()
+	if err != nil {
+		return 0, fmt.Errorf("failed to retrieve last insert ID: %v", err)
+	}
+	return uint64(id), nil
 }
 
 func (r *postRepositoryStruct) GetByID(postID uint64) (*models.Post, error) {

@@ -42,11 +42,16 @@ func (h *PostHandler) CreatePostHandler(c *gin.Context) {
 
 	post, err := h.postService.CreatePost(req.Caption, req.UserID)
 	if err != nil {
+		log.Error().Err(err).Msg("Failed to create post")
 		c.JSON(http.StatusInternalServerError, gin.H{"error": "Failed to create post"})
 		return
 	}
 
-	c.JSON(http.StatusCreated, post)
+	c.JSON(http.StatusCreated, dto.CreatePostResponse{
+		ID:      post.ID,
+		Caption: post.Caption.String,
+		UserID:  post.CreatedBy,
+	})
 }
 
 func (h *PostHandler) GetPostsByUser(c *gin.Context) {

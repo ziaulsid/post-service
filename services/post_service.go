@@ -111,11 +111,12 @@ func (s *postService) CreatePost(caption string, userID uint64) (*models.Post, e
 		CreatedBy: userID,
 	}
 
-	err := s.postRepo.Create(post)
+	id, err := s.postRepo.Create(post)
 	if err != nil {
 		return nil, err
 	}
 
+	post.ID = id
 	return post, nil
 }
 

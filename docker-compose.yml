@@ -27,3 +27,22 @@ services:
       mysql:
         condition: service_healthy
     restart: on-failure
+
+  app:
+    build: .
+    command: go run main.go
+    volumes:
+      - .:/app
+    working_dir: /app
+    environment:
+      - DB_USER=root
+      - DB_PASSWORD=
+      - DB_NAME=post_db
+      - DB_HOST=mysql
+      - DB_DRIVER=mysql
+    depends_on:
+      mysql:
+        condition: service_healthy
+    ports:
+      - "8080:8080"
+    restart: on-failure
