@@ -6,8 +6,8 @@
 - Allow user to view all the posts including recent 2 comments
 
 ### Setup of the Project
-- Requirements: `docker-compose`.
-- Run `docker-compose up --build` command to setup the database and run the app within the container itself
+- Requirements: Install `docker-compose`.
+- Run `docker-compose up --build` command to setup the database and run the app within the container itself (No additional setup needed)
   <img width="966" alt="image" src="https://github.com/user-attachments/assets/1eba5414-d388-4bc9-9817-e22daf55b5cf">
 
 
