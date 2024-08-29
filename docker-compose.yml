@@ -1,0 +1,29 @@
+version: "3.9"
+
+services:
+  mysql:
+    image: mysql:5.7
+    ports:
+      - "3306:3306"
+    platform: linux/x86_64
+    environment:
+      MYSQL_ALLOW_EMPTY_PASSWORD: "true"
+    healthcheck:
+      test: [ "CMD", "mysqladmin" ,"ping", "-h", "mysql" ]
+      timeout: 20s
+      retries: 10
+    restart: on-failure
+
+  mysql-startup-command:
+    image: mysql:5.7
+    platform: linux/x86_64
+    links:
+      - "mysql:mysql"
+    volumes:
+      - ./scripts:/scripts
+    command: >
+      /bin/sh /scripts/mysql-setup-script.sh
+    depends_on:
+      mysql:
+        condition: service_healthy
+    restart: on-failure

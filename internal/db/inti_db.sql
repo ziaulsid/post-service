@@ -1,0 +1,20 @@
+CREATE DATABASE IF NOT EXISTS post_db;
+
+USE post_db;
+
+CREATE TABLE IF NOT EXISTS posts (
+     id INT AUTO_INCREMENT PRIMARY KEY,
+     caption TEXT,
+     image LONGBLOB,
+     creator VARCHAR(255),
+     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE IF NOT EXISTS comments (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    post_id INT,
+    content TEXT,
+    creator VARCHAR(255),
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (post_id) REFERENCES posts(id) ON DELETE CASCADE
+);
