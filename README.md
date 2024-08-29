@@ -11,6 +11,16 @@
 - Execute `go build .` and `go run main.go` commands to build and run the application. 
 - Your server should be ready to serve the endpoints
 
+- Setup a .env file
+```
+DB_USER=root
+DB_PASSWORD=
+DB_NAME=post_db
+DB_HOST=localhost:3306
+DB_DRIVER=mysql
+
+```
+
 - Alternatively, if using Goland or any other IDE, follow this setup
 <img width="1066" alt="image" src="https://github.com/user-attachments/assets/9135577d-3b32-48ae-afd1-5cb1efa11a26">
 <img width="501" alt="image" src="https://github.com/user-attachments/assets/7ab98cf0-f975-49f7-a6ee-ee32db5540d8">
